@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/pages/coffee_type.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Map<String, bool> coffeeType = {
+    'Cappaccino': true,
+    'Espresso': false,
+    'Latte': false,
+    'Flat White': false
+  };
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    print('object');
+    print(coffeeType.keys);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +38,7 @@ class HomePage extends StatelessWidget {
               style: GoogleFonts.bebasNeue(fontSize: 50, color: Colors.white),
             ),
             const SizedBox(
-              height: 25,
+              height: 50,
             ),
             TextField(
               decoration: InputDecoration(
@@ -32,7 +53,32 @@ class HomePage extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.grey.shade600),
                 ),
               ),
-            )
+            ),
+            const SizedBox(height: 50),
+            SizedBox(
+              height: 20,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: coffeeType.length,
+                itemBuilder: (context, index) {
+                  String coffeeKey = coffeeType.keys.elementAt(index);
+                  return InkWell(
+                    splashColor: Colors.transparent,
+                    onTap: () {
+                      setState(() {
+                        coffeeType.updateAll((key, value) => value = false);
+                        coffeeType[coffeeKey] = true;
+                      });
+                    },
+                    child: CoffeeType(
+                      coffeeType: coffeeKey,
+                      isSelected: coffeeType.values.elementAt(index),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 50),
           ],
         ),
       ),
