@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/pages/coffee_page.dart';
 import 'pages/home_page.dart';
 
 void main() {
@@ -11,12 +12,12 @@ class MyCoffeeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const HomePage(),
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.orange,
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        home: const HomePage(),
+        theme: ThemeData(
+          scaffoldBackgroundColor: const Color.fromRGBO(14, 17, 21, 1),
+          brightness: Brightness.dark,
+          // primarySwatch: Colors.orange,
+        ));
   }
 }

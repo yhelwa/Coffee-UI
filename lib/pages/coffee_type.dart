@@ -12,10 +12,23 @@ class CoffeeType extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 18),
-      child: Text(
-        coffeeType,
-        style: TextStyle(
-            fontSize: 18, color: isSelected ? Colors.orange : Colors.white),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            coffeeType,
+            style: TextStyle(
+                fontSize: 18,
+                color: isSelected ? Colors.orange.shade700 : Colors.white),
+          ),
+          if (isSelected)
+            Icon(
+              Icons.circle,
+              size: 6,
+              color: Colors.orange.shade700,
+            )
+        ],
       ),
     );
   }
