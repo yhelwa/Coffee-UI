@@ -34,7 +34,7 @@ class CoffeePage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
-                        CustomIcon(icon: Icons.arrow_back_ios),
+                        CustomIcon(icon: Icons.arrow_back_ios_new_outlined),
                         CustomIcon(icon: Icons.favorite),
                       ],
                     ),

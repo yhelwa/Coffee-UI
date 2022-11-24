@@ -37,9 +37,19 @@ class _HomePageState extends State<HomePage> {
     ),
   ];
 
+  int _selectedIndex = 0;
+  void navigationTapped(int page) {
+    print("Page is $page");
+
+    setState(() {
+      _selectedIndex = page;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 50,
@@ -58,11 +68,13 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
-          // background
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
           canvasColor: const Color.fromRGBO(14, 17, 21, 1),
         ),
         child: BottomNavigationBar(
           // backgroundColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
           selectedItemColor: Colors.orange.shade700,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
@@ -70,6 +82,8 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ''),
             BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
           ],
+          onTap: navigationTapped,
+          currentIndex: _selectedIndex,
         ),
       ),
       body: Padding(
@@ -79,7 +93,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               'Find the best \ncoffee for you',
-              style: GoogleFonts.bebasNeue(fontSize: 50, color: Colors.white),
+              style: GoogleFonts.bebasNeue(fontSize: 45, color: Colors.white),
             ),
             const SizedBox(
               height: 20,
@@ -88,17 +102,20 @@ class _HomePageState extends State<HomePage> {
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Colors.grey.shade600),
+                  borderSide: const BorderSide(color: Colors.transparent),
                 ),
                 prefixIcon: Icon(Icons.search, color: Colors.orange.shade700),
+                fillColor: Color.fromRGBO(19, 25, 34, 1),
+                filled: true,
                 hintText: "Find your coffee...",
+                hintStyle: TextStyle(color: Colors.grey.shade800),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Colors.grey.shade600),
+                  borderSide: const BorderSide(color: Colors.transparent),
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             SizedBox(
               height: 35,
               child: ListView.builder(
