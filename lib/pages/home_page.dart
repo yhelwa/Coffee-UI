@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_test/pages/coffee_model.dart';
 import 'package:flutter_application_test/pages/coffee_page.dart';
-import 'package:flutter_application_test/pages/coffee_tile.dart';
-import 'package:flutter_application_test/pages/coffee_type.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../widgets/coffee_tile.dart';
+import '../widgets/coffee_type.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

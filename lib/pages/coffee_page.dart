@@ -1,9 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_test/pages/coffee_size.dart';
-import 'package:flutter_application_test/pages/custom_icon.dart';
 
+import '../widgets/coffee_size.dart';
+import '../widgets/custom_icon.dart';
 import 'coffee_model.dart';
 
 class CoffeePage extends StatelessWidget {
