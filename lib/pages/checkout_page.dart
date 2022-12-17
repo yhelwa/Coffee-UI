@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_test/pages/bottom_menu.dart';
-import 'package:flutter_application_test/pages/coffee_model.dart';
+import 'package:coffee_ui/pages/bottom_menu.dart';
+import 'package:coffee_ui/pages/coffee_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/coffee_cart_item.dart';

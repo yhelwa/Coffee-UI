@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_test/pages/bottom_menu.dart';
-import 'package:flutter_application_test/pages/checkout_page.dart';
-import 'package:flutter_application_test/widgets/coffee_preferences.dart';
+import 'package:coffee_ui/pages/bottom_menu.dart';
+import 'package:coffee_ui/pages/checkout_page.dart';
+import 'package:coffee_ui/widgets/coffee_preferences.dart';
 
 import '../widgets/coffee_size.dart';
 import '../widgets/custom_icon.dart';

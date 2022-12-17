@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_test/pages/checkout_page.dart';
-import 'package:flutter_application_test/pages/home_page.dart';
+import 'package:coffee_ui/pages/checkout_page.dart';
+import 'package:coffee_ui/pages/home_page.dart';
 
 class CustomScaffold extends StatefulWidget {
   const CustomScaffold({Key? key}) : super(key: key);

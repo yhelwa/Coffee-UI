@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_test/pages/coffee_model.dart';
+import 'package:coffee_ui/pages/coffee_model.dart';
 
 class CoffeeTile extends StatelessWidget {
   final CoffeeModel coffeeModel;

@@ -1,8 +1,10 @@
+import 'package:coffee_ui/widgets/intro_screens.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_test/pages/checkout_page.dart';
-import 'package:flutter_application_test/pages/login_screen.dart';
-import 'package:flutter_application_test/splashScreen.dart';
-import 'package:flutter_application_test/widgets/coffee_preferences.dart';
+import 'package:coffee_ui/pages/checkout_page.dart';
+import 'package:coffee_ui/pages/intro_page.dart';
+import 'package:coffee_ui/pages/login_screen.dart';
+import 'package:coffee_ui/splashScreen.dart';
+import 'package:coffee_ui/widgets/coffee_preferences.dart';
 import 'pages/custom_scaffold.dart';
 import 'pages/home_page.dart';
 
@@ -22,11 +24,9 @@ class MyCoffeeApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromRGBO(14, 17, 21, 1),
         brightness: Brightness.dark,
-        // iconTheme: IconThemeData(size: 20)
-        // primarySwatch: Colors.orange,
       ),
-      initialRoute: '/login',
-      // home: const CustomScaffold(),
+      // initialRoute: '/login',
+      home: const IntroPage(),
       routes: {
         '/home': (context) => const HomePage(),
         '/login': (context) => const LoginScreen(),

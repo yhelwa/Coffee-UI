@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_test/pages/home_page.dart';
+import 'package:coffee_ui/pages/home_page.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -54,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen>
                 Visibility(
                   visible: !copAnimated,
                   child: Lottie.asset(
-                    'assets/images/coffee.json',
+                    'assets/animations/coffee.json',
                     controller: _coffeeController,
                     onLoaded: (composition) {
                       _coffeeController

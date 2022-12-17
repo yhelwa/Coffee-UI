@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen>
       body: _loading
           ? Center(
               child: Lottie.asset(
-                'assets/images/loading.json',
+                'assets/animations/loading.json',
                 controller: _coffeeController,
                 height: 100,
                 width: 100,
