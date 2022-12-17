@@ -1,5 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/pages/bottom_menu.dart';
+import 'package:flutter_application_test/pages/checkout_page.dart';
+import 'package:flutter_application_test/widgets/coffee_preferences.dart';
 
 import '../widgets/coffee_size.dart';
 import '../widgets/custom_icon.dart';
@@ -242,16 +245,28 @@ class CoffeePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 70, vertical: 18),
-                  decoration: BoxDecoration(
-                    color: Colors.orange.shade700,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: const Text(
-                    "Buy Now",
-                    style: TextStyle(fontSize: 20),
+                InkWell(
+                  onTap: (() {
+                    CheckoutPage.coffeeList.value.add(coffeeModel);
+                    CoffeePrefs.setCoffeeCartItems(coffeeList);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CheckoutPage(),
+                      ),
+                    );
+                  }),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 70, vertical: 18),
+                    decoration: BoxDecoration(
+                      color: Colors.orange.shade700,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: const Text(
+                      "Buy Now",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                 )
               ],
