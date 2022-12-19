@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       4.99,
     ),
     CoffeeModel(
-      'assets/images/lattee.png',
+      'assets/images/lattee.jpg',
       'Latte',
       5.99,
     ),
@@ -56,7 +56,9 @@ class _HomePageState extends State<HomePage> {
         toolbarHeight: 50,
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/login');
+          },
           icon: const Icon(Icons.menu),
         ),
         actions: const [
@@ -140,12 +142,13 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => CoffeePage(
-                                    coffeeModel: coffeeTiles[index],
-                                  ),
+                                      coffeeModel: coffeeTiles[index],
+                                      index: index),
                                 ),
                               )),
                           child: CoffeeTile(
                             coffeeModel: coffeeTiles[index],
+                            index: index,
                           ),
                         ),
                       );

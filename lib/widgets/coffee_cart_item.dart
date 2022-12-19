@@ -1,4 +1,6 @@
+import 'package:coffee_ui/bloc/coffee_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../pages/coffee_model.dart';
 
 class CoffeeCartItem extends StatefulWidget {
@@ -17,137 +19,147 @@ class _CoffeeCartItemState extends State<CoffeeCartItem> {
   int count = 0;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      child: Dismissible(
-        key: UniqueKey(),
-        direction: DismissDirection.endToStart,
-        background: Container(
-          color: Colors.red,
-          child: const Padding(
-            padding: EdgeInsets.only(right: 28.0),
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Icon(Icons.delete, color: Colors.white),
-            ),
-          ),
-        ),
-        onDismissed: (direction) {
-          print(direction.name);
-        },
-        child: Container(
-          padding: const EdgeInsets.all(15),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            gradient: const LinearGradient(colors: [
-              Color.fromRGBO(35, 35, 47, 1),
-              Color.fromRGBO(14, 19, 26, 1),
-            ], begin: Alignment.centerLeft, end: Alignment.centerRight),
-          ),
-          child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                child: Image.asset(
-                  widget.coffeeModel.coffeeImagePath,
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,
+    return BlocBuilder<CoffeeBloc, CoffeeState>(
+      builder: (context, state) {
+        return Container(
+          margin: const EdgeInsets.only(bottom: 10),
+          child: Dismissible(
+            key: UniqueKey(),
+            direction: DismissDirection.endToStart,
+            background: Container(
+              color: Colors.red,
+              child: const Padding(
+                padding: EdgeInsets.only(right: 28.0),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Icon(Icons.delete, color: Colors.white),
                 ),
               ),
-              const SizedBox(width: 20),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            onDismissed: (direction) {
+              context
+                  .read<CoffeeBloc>()
+                  .add(RemoveCoffee(coffee: widget.coffeeModel));
+              if (state is CoffeeLoaded) {
+                print(state.coffees.length);
+              }
+            },
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                gradient: const LinearGradient(colors: [
+                  Color.fromRGBO(35, 35, 47, 1),
+                  Color.fromRGBO(14, 19, 26, 1),
+                ], begin: Alignment.centerLeft, end: Alignment.centerRight),
+              ),
+              child: Row(
                 children: [
-                  //image
-                  const SizedBox(height: 10),
-                  //
+                  ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    child: Image.asset(
+                      widget.coffeeModel.coffeeImagePath,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const SizedBox(width: 20),
                   Column(
+                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.coffeeModel.coffeeName,
-                        style: const TextStyle(fontSize: 18),
+                      //image
+                      const SizedBox(height: 10),
+                      //
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.coffeeModel.coffeeName,
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'With Oat Milk',
+                            style: TextStyle(
+                                fontSize: 12, color: Colors.grey.shade600),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        'With Oat Milk',
-                        style: TextStyle(
-                            fontSize: 12, color: Colors.grey.shade600),
-                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                          children: [
+                            TextSpan(
+                                text: '\$ ',
+                                style: TextStyle(
+                                  color: Colors.orange.shade700,
+                                )),
+                            TextSpan(
+                                text:
+                                    widget.coffeeModel.coffeePrice.toString()),
+                          ],
+                        ),
+                      )
                     ],
                   ),
-                  const SizedBox(height: 10),
-                  RichText(
-                    text: TextSpan(
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
+                  const Spacer(),
+                  Container(
+                    width: 100,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
                       children: [
-                        TextSpan(
-                            text: '\$ ',
-                            style: TextStyle(
-                              color: Colors.orange.shade700,
-                            )),
-                        TextSpan(
-                            text: widget.coffeeModel.coffeePrice.toString()),
+                        InkWell(
+                          onTap: (() =>
+                              count == 0 ? null : setState(() => count--)),
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Colors.orange.shade700,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const Icon(
+                              Icons.remove,
+                              size: 14,
+                            ),
+                          ),
+                        ),
+                        // const SizedBox(width: 10),
+                        const Spacer(),
+                        Text(
+                          count.toString(),
+                          style: const TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        // const SizedBox(width: 10),
+                        const Spacer(),
+                        InkWell(
+                          onTap: (() => setState(() => count++)),
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Colors.orange.shade700,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const Icon(
+                              Icons.add,
+                              size: 14,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   )
                 ],
               ),
-              const Spacer(),
-              Container(
-                width: 100,
-                decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: (() =>
-                          count == 0 ? null : setState(() => count--)),
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            color: Colors.orange.shade700,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Icon(
-                          Icons.remove,
-                          size: 14,
-                        ),
-                      ),
-                    ),
-                    // const SizedBox(width: 10),
-                    const Spacer(),
-                    Text(
-                      count.toString(),
-                      style: const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-                    // const SizedBox(width: 10),
-                    const Spacer(),
-                    InkWell(
-                      onTap: (() => setState(() => count++)),
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            color: Colors.orange.shade700,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Icon(
-                          Icons.add,
-                          size: 14,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

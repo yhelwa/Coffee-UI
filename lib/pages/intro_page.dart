@@ -1,3 +1,4 @@
+import 'package:coffee_ui/pages/custom_scaffold.dart';
 import 'package:coffee_ui/widgets/intro_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -83,7 +84,11 @@ class IntroPageState extends State<IntroPage> {
                     : FloatingActionButton(
                         backgroundColor: Colors.orange.shade700,
                         onPressed: (() {
-                          Navigator.pushNamed(context, '/home');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      CustomScaffold(selectedIndex: 0)));
                         }),
                         child: const Icon(
                           Icons.home,

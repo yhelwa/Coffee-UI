@@ -3,7 +3,9 @@ import 'package:coffee_ui/pages/checkout_page.dart';
 import 'package:coffee_ui/pages/home_page.dart';
 
 class CustomScaffold extends StatefulWidget {
-  const CustomScaffold({Key? key}) : super(key: key);
+  int selectedIndex = 0;
+
+  CustomScaffold({Key? key, required this.selectedIndex}) : super(key: key);
 
   @override
   State<CustomScaffold> createState() => _CustomScaffoldState();
@@ -11,11 +13,10 @@ class CustomScaffold extends StatefulWidget {
 
 class _CustomScaffoldState extends State<CustomScaffold> {
   final List<Widget> _screens = [const HomePage(), const CheckoutPage()];
-  int _selectedIndex = 0;
 
   void navigationTapped(int page) {
     setState(() {
-      _selectedIndex = page;
+      widget.selectedIndex = page;
     });
   }
 
@@ -24,7 +25,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
     return Scaffold(
       body: IndexedStack(
         children: _screens,
-        index: _selectedIndex,
+        index: widget.selectedIndex,
       ),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
@@ -44,7 +45,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
             BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
           ],
           onTap: navigationTapped,
-          currentIndex: _selectedIndex,
+          currentIndex: widget.selectedIndex,
         ),
       ),
     );

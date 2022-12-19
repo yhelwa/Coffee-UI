@@ -1,3 +1,4 @@
+import 'package:coffee_ui/bloc/coffee_bloc.dart';
 import 'package:coffee_ui/widgets/intro_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee_ui/pages/checkout_page.dart';
@@ -5,6 +6,7 @@ import 'package:coffee_ui/pages/intro_page.dart';
 import 'package:coffee_ui/pages/login_screen.dart';
 import 'package:coffee_ui/splashScreen.dart';
 import 'package:coffee_ui/widgets/coffee_preferences.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'pages/custom_scaffold.dart';
 import 'pages/home_page.dart';
 
@@ -18,20 +20,27 @@ class MyCoffeeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      // home: const SplashScreen(),
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromRGBO(14, 17, 21, 1),
-        brightness: Brightness.dark,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CoffeeBloc()..add(LoadCoffee()),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        // home: const SplashScreen(),
+        theme: ThemeData(
+          scaffoldBackgroundColor: const Color.fromRGBO(14, 17, 21, 1),
+          brightness: Brightness.dark,
+        ),
+        // initialRoute: '/login',
+        home: const IntroPage(),
+        routes: {
+          '/home': (context) => const HomePage(),
+          '/login': (context) => const LoginScreen(),
+          '/checkout': (context) => const CheckoutPage(),
+        },
       ),
-      // initialRoute: '/login',
-      home: const IntroPage(),
-      routes: {
-        '/home': (context) => const HomePage(),
-        '/login': (context) => const LoginScreen(),
-        '/checkout': (context) => const CheckoutPage(),
-      },
     );
   }
 }

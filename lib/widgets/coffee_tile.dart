@@ -3,9 +3,11 @@ import 'package:coffee_ui/pages/coffee_model.dart';
 
 class CoffeeTile extends StatelessWidget {
   final CoffeeModel coffeeModel;
+  final int index;
   const CoffeeTile({
     Key? key,
     required this.coffeeModel,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -13,7 +15,7 @@ class CoffeeTile extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(20)),
       child: Container(
-        padding: const EdgeInsets.all(20),
+        // padding: const EdgeInsets.all(20),
         width: 200,
         decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
@@ -26,11 +28,14 @@ class CoffeeTile extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(20)),
-              child: Image.asset(
-                coffeeModel.coffeeImagePath,
-                width: 200,
-                height: 200,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: 'imageHero$index',
+                child: Image.asset(
+                  coffeeModel.coffeeImagePath,
+                  width: 200,
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(height: 10),
