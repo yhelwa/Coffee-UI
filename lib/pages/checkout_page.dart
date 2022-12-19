@@ -71,7 +71,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
               } else {
                 double coffeeTotal =
                     state.coffees.fold(0, (p, c) => p + c.coffeePrice);
-
+                Map<CoffeeModel, int> coffeeMap = {};
+                state.coffees.forEach((x) => coffeeMap[x] =
+                    !coffeeMap.containsKey(x) ? (1) : (coffeeMap[x]! + 1));
+                print(coffeeMap);
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(
@@ -79,10 +82,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     children: [
                       Flexible(
                         child: ListView.builder(
-                            itemCount: state.coffees.length,
+                            itemCount: coffeeMap.length,
                             itemBuilder: (context, index) {
+                              CoffeeModel coffeeKey =
+                                  coffeeMap.keys.elementAt(index);
+
                               return CoffeeCartItem(
-                                coffeeModel: state.coffees[index],
+                                coffeeModel: coffeeKey,
+                                coffeeCount: coffeeMap[coffeeKey]!,
                               );
                             }),
                       ),
@@ -153,7 +160,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                       fontSize: 45, color: Colors.white),
                                 ),
                                 Text(
-                                  coffeeTotal.toString(),
+                                  coffeeTotal.toStringAsFixed(2),
                                   // '\$ 42.99',
                                   style: GoogleFonts.bebasNeue(
                                       fontSize: 45, color: Colors.white),

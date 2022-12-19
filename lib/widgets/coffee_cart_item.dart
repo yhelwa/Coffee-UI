@@ -5,10 +5,12 @@ import '../pages/coffee_model.dart';
 
 class CoffeeCartItem extends StatefulWidget {
   final CoffeeModel coffeeModel;
+  final int coffeeCount;
 
   const CoffeeCartItem({
     Key? key,
     required this.coffeeModel,
+    required this.coffeeCount,
   }) : super(key: key);
 
   @override
@@ -16,7 +18,7 @@ class CoffeeCartItem extends StatefulWidget {
 }
 
 class _CoffeeCartItemState extends State<CoffeeCartItem> {
-  int count = 0;
+  // int count = 1;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CoffeeBloc, CoffeeState>(
@@ -37,10 +39,15 @@ class _CoffeeCartItemState extends State<CoffeeCartItem> {
               ),
             ),
             onDismissed: (direction) {
-              context
-                  .read<CoffeeBloc>()
-                  .add(RemoveCoffee(coffee: widget.coffeeModel));
               if (state is CoffeeLoaded) {
+                List<CoffeeModel> coffeeList = state.coffees
+                    .where((element) => element == widget.coffeeModel)
+                    .toList();
+
+                coffeeList.forEach((coffee) {
+                  context.read<CoffeeBloc>().add(RemoveCoffee(coffee: coffee));
+                });
+
                 print(state.coffees.length);
               }
             },
@@ -115,8 +122,14 @@ class _CoffeeCartItemState extends State<CoffeeCartItem> {
                     child: Row(
                       children: [
                         InkWell(
-                          onTap: (() =>
-                              count == 0 ? null : setState(() => count--)),
+                          onTap: (() {
+                            // if (count != 1) {
+                            context
+                                .read<CoffeeBloc>()
+                                .add(RemoveCoffee(coffee: widget.coffeeModel));
+                            // setState(() => count--);
+                            // }
+                          }),
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
@@ -131,7 +144,7 @@ class _CoffeeCartItemState extends State<CoffeeCartItem> {
                         // const SizedBox(width: 10),
                         const Spacer(),
                         Text(
-                          count.toString(),
+                          widget.coffeeCount.toString(),
                           style: const TextStyle(
                             fontSize: 14,
                           ),
@@ -139,7 +152,12 @@ class _CoffeeCartItemState extends State<CoffeeCartItem> {
                         // const SizedBox(width: 10),
                         const Spacer(),
                         InkWell(
-                          onTap: (() => setState(() => count++)),
+                          onTap: (() {
+                            // setState(() => count++);
+                            context
+                                .read<CoffeeBloc>()
+                                .add(AddCoffee(coffee: widget.coffeeModel));
+                          }),
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
