@@ -1,5 +1,5 @@
 import 'package:coffee_ui/pages/custom_scaffold.dart';
-import 'package:coffee_ui/widgets/intro_screens.dart';
+import 'package:coffee_ui/screens/intro_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -84,11 +84,12 @@ class IntroPageState extends State<IntroPage> {
                     : FloatingActionButton(
                         backgroundColor: Colors.orange.shade700,
                         onPressed: (() {
-                          Navigator.push(
+                          Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      CustomScaffold(selectedIndex: 0)));
+                                      CustomScaffold(selectedIndex: 0)),
+                              (route) => true);
                         }),
                         child: const Icon(
                           Icons.home,

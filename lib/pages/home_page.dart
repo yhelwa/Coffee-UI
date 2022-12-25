@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/login');
+            Navigator.pushNamed(context, '/welcome');
           },
           icon: const Icon(Icons.menu),
         ),

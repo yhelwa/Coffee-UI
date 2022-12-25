@@ -1,3 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:coffee_ui/widgets/coffee_drawer.dart';
+import 'package:coffee_ui/widgets/constants.dart';
+import 'package:coffee_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee_ui/pages/checkout_page.dart';
 import 'package:coffee_ui/pages/home_page.dart';
@@ -27,6 +32,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
         children: _screens,
         index: widget.selectedIndex,
       ),
+      drawer: CoffeeDrawer(),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
           splashColor: Colors.transparent,

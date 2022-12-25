@@ -1,13 +1,11 @@
 import 'package:coffee_ui/bloc/coffee_bloc.dart';
-import 'package:coffee_ui/widgets/intro_screens.dart';
+import 'package:coffee_ui/pages/custom_scaffold.dart';
+import 'package:coffee_ui/pages/intro_page.dart';
+import 'package:coffee_ui/pages/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee_ui/pages/checkout_page.dart';
-import 'package:coffee_ui/pages/intro_page.dart';
-import 'package:coffee_ui/pages/login_screen.dart';
-import 'package:coffee_ui/splashScreen.dart';
-import 'package:coffee_ui/widgets/coffee_preferences.dart';
+import 'package:coffee_ui/screens/login_screen_2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'pages/custom_scaffold.dart';
 import 'pages/home_page.dart';
 
 void main() async {
@@ -33,12 +31,13 @@ class MyCoffeeApp extends StatelessWidget {
           scaffoldBackgroundColor: const Color.fromRGBO(14, 17, 21, 1),
           brightness: Brightness.dark,
         ),
-        // initialRoute: '/login',
+        // initialRoute: '/custom',
         home: const IntroPage(),
         routes: {
           '/home': (context) => const HomePage(),
-          '/login': (context) => const LoginScreen(),
+          '/welcome': (context) => const WelcomeScreen(),
           '/checkout': (context) => const CheckoutPage(),
+          '/custom': (context) => CustomScaffold(selectedIndex: 0),
         },
       ),
     );

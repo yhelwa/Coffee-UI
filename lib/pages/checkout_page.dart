@@ -74,7 +74,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 Map<CoffeeModel, int> coffeeMap = {};
                 state.coffees.forEach((x) => coffeeMap[x] =
                     !coffeeMap.containsKey(x) ? (1) : (coffeeMap[x]! + 1));
-                print(coffeeMap);
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(
@@ -86,7 +85,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             itemBuilder: (context, index) {
                               CoffeeModel coffeeKey =
                                   coffeeMap.keys.elementAt(index);
-
                               return CoffeeCartItem(
                                 coffeeModel: coffeeKey,
                                 coffeeCount: coffeeMap[coffeeKey]!,
