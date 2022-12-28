@@ -7,7 +7,7 @@ import 'package:coffee_ui/widgets/coffee_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../bloc/coffee_bloc.dart';
+import '../bloc/coffee/coffee_bloc.dart';
 import '../widgets/coffee_size.dart';
 import '../widgets/custom_icon.dart';
 import 'coffee_model.dart';

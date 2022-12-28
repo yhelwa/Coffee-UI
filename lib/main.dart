@@ -1,15 +1,17 @@
-import 'package:coffee_ui/bloc/coffee_bloc.dart';
 import 'package:coffee_ui/pages/custom_scaffold.dart';
 import 'package:coffee_ui/pages/intro_page.dart';
 import 'package:coffee_ui/pages/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee_ui/pages/checkout_page.dart';
-import 'package:coffee_ui/screens/login_screen_2.dart';
+import 'package:coffee_ui/screens/login_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/coffee/coffee_bloc.dart';
 import 'pages/home_page.dart';
 
 void main() async {
-  // await CoffeePrefs.init();
+  // await CoffeePrefs.init();WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyCoffeeApp());
 }
 

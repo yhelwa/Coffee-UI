@@ -26,3 +26,12 @@ class RemoveCoffee extends CoffeeEvent {
   @override
   List<Object> get props => [coffee];
 }
+
+class Login extends CoffeeEvent {
+  final bool isLogin;
+
+  const Login({required this.isLogin});
+
+  @override
+  List<Object> get props => [isLogin];
+}

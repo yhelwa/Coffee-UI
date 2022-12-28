@@ -89,7 +89,7 @@ class IntroPageState extends State<IntroPage> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       CustomScaffold(selectedIndex: 0)),
-                              (route) => true);
+                              (route) => false);
                         }),
                         child: const Icon(
                           Icons.home,

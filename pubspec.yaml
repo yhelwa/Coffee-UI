@@ -24,6 +24,7 @@ dependencies:
   smooth_page_indicator:
   flutter_bloc:
   equatable:
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:
@@ -59,4 +60,5 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+    - assets/icons/
   

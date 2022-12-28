@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
@@ -54,20 +51,20 @@ class _SignUpScreenState extends State<SignUpScreen>
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
-                children: [
-                  const Icon(
+                children: const [
+                  // const Icon(
+                  //   Icons.coffee_outlined,
+                  //   size: 100,
+                  //   color: Colors.grey,
+                  // ),
+                  Icon(
                     Icons.coffee_outlined,
                     size: 100,
                     color: Colors.grey,
                   ),
-                  const SizedBox(height: 25),
-                  Text(
-                    'Welcome back',
-                    style: GoogleFonts.bebasNeue(
-                        fontSize: 45, color: Colors.white),
-                  ),
                 ],
               ),
+              const SizedBox(height: 25),
               Column(
                 children: [
                   CoffeeTextField(

@@ -30,5 +30,10 @@ class CoffeeBloc extends Bloc<CoffeeEvent, CoffeeState> {
             coffees: List.from(state.coffees)..remove(event.coffee)));
       }
     });
+
+    on<Login>((event, emit) {
+      print('Logging in');
+      // emit(event.isLogin = true;)
+    });
   }
 }
