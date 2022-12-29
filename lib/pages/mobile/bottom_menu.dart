@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'checkout_page.dart';
 
 class BottomMenu extends StatefulWidget {
   const BottomMenu({Key? key}) : super(key: key);

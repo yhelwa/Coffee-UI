@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:coffee_ui/pages/home_page.dart';
+import 'package:coffee_ui/pages/mobile/home_page_mobile.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -130,7 +130,7 @@ class _BottomPart extends StatelessWidget {
                   onTap: (() => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const HomePage()))),
+                          builder: (context) => const HomePageMobile()))),
                   child: Container(
                     height: 85.0,
                     width: 85.0,

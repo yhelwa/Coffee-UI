@@ -15,7 +15,8 @@ class _CustomIconState extends State<CustomIcon> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => setState(() => _isSelected = !_isSelected),
+      // onTap: () => setState(() => _isSelected = !_isSelected),
+      onTap: () => Navigator.pop(context),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(

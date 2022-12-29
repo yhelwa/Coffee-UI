@@ -1,7 +1,7 @@
 import 'package:coffee_ui/bloc/coffee/coffee_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../pages/coffee_model.dart';
+import 'package:coffee_ui/bloc/models/coffee_model.dart';
 
 class CoffeeCartItem extends StatefulWidget {
   final CoffeeModel coffeeModel;

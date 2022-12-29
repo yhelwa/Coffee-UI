@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:coffee_ui/pages/web/home_page_web.dart';
 import 'package:coffee_ui/widgets/coffee_drawer.dart';
-import 'package:coffee_ui/widgets/constants.dart';
-import 'package:coffee_ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:coffee_ui/pages/checkout_page.dart';
-import 'package:coffee_ui/pages/home_page.dart';
+import 'package:coffee_ui/pages/mobile/checkout_page.dart';
+import 'package:coffee_ui/pages/mobile/home_page_mobile.dart';
 
 class CustomScaffold extends StatefulWidget {
   int selectedIndex = 0;
@@ -17,7 +16,12 @@ class CustomScaffold extends StatefulWidget {
 }
 
 class _CustomScaffoldState extends State<CustomScaffold> {
-  final List<Widget> _screens = [const HomePage(), const CheckoutPage()];
+  final List<Widget> _screens = [
+    const HomePageWeb(),
+    const CheckoutPage(),
+    const CheckoutPage(),
+    const CheckoutPage()
+  ];
 
   void navigationTapped(int page) {
     setState(() {

@@ -1,21 +1,17 @@
 import 'dart:ui';
-import 'package:coffee_ui/pages/custom_scaffold.dart';
+import 'package:coffee_ui/bloc/coffee/coffee_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:coffee_ui/pages/bottom_menu.dart';
-import 'package:coffee_ui/pages/checkout_page.dart';
-import 'package:coffee_ui/widgets/coffee_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../widgets/coffee_size.dart';
+import '../../widgets/custom_icon.dart';
+import '../../bloc/models/coffee_model.dart';
 
-import '../bloc/coffee/coffee_bloc.dart';
-import '../widgets/coffee_size.dart';
-import '../widgets/custom_icon.dart';
-import 'coffee_model.dart';
-
-class CoffeePage extends StatelessWidget {
+class CoffeePageWeb extends StatelessWidget {
   final CoffeeModel coffeeModel;
   final int index;
-  const CoffeePage({Key? key, required this.coffeeModel, required this.index})
+  const CoffeePageWeb(
+      {Key? key, required this.coffeeModel, required this.index})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -273,14 +269,7 @@ class CoffeePage extends StatelessWidget {
                             .read<CoffeeBloc>()
                             .add(AddCoffee(coffee: coffeeModel));
                         // CoffeePrefs.setCoffeeCartItems(coffeeList);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CustomScaffold(
-                              selectedIndex: 1,
-                            ),
-                          ),
-                        );
+                        Navigator.pop(context);
                       }),
                       child: Container(
                         padding: const EdgeInsets.symmetric(

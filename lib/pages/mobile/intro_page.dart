@@ -1,4 +1,4 @@
-import 'package:coffee_ui/pages/custom_scaffold.dart';
+import 'package:coffee_ui/pages/mobile/custom_scaffold.dart';
 import 'package:coffee_ui/screens/intro_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

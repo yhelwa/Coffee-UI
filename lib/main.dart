@@ -1,12 +1,14 @@
-import 'package:coffee_ui/pages/custom_scaffold.dart';
-import 'package:coffee_ui/pages/intro_page.dart';
-import 'package:coffee_ui/pages/welcome_screen.dart';
+import 'package:coffee_ui/pages/home_page.dart';
+import 'package:coffee_ui/pages/mobile/custom_scaffold.dart';
+import 'package:coffee_ui/pages/mobile/home_page_mobile.dart';
+import 'package:coffee_ui/pages/mobile/intro_page.dart';
+import 'package:coffee_ui/pages/mobile/welcome_screen.dart';
+import 'package:coffee_ui/pages/web/home_page_web.dart';
 import 'package:flutter/material.dart';
-import 'package:coffee_ui/pages/checkout_page.dart';
+import 'package:coffee_ui/pages/mobile/checkout_page.dart';
 import 'package:coffee_ui/screens/login_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/coffee/coffee_bloc.dart';
-import 'pages/home_page.dart';
 
 void main() async {
   // await CoffeePrefs.init();WidgetsFlutterBinding.ensureInitialized();
@@ -34,9 +36,9 @@ class MyCoffeeApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
         // initialRoute: '/custom',
-        home: const IntroPage(),
+        home: const HomePage(),
         routes: {
-          '/home': (context) => const HomePage(),
+          '/home': (context) => const HomePageMobile(),
           '/welcome': (context) => const WelcomeScreen(),
           '/checkout': (context) => const CheckoutPage(),
           '/custom': (context) => CustomScaffold(selectedIndex: 0),

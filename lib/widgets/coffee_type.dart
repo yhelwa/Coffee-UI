@@ -19,7 +19,7 @@ class CoffeeType extends StatelessWidget {
           Text(
             coffeeType,
             style: TextStyle(
-                fontSize: 18,
+                fontSize: 32,
                 color: isSelected ? Colors.orange.shade700 : Colors.white),
           ),
           if (isSelected)

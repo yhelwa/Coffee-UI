@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:coffee_ui/pages/coffee_model.dart';
+import 'package:coffee_ui/bloc/models/coffee_model.dart';
 import 'package:equatable/equatable.dart';
 
 part 'coffee_event.dart';

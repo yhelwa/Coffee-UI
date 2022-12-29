@@ -1,13 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:coffee_ui/bloc/coffee/coffee_bloc.dart';
+import 'package:coffee_ui/widgets/coffee_cart_item.dart';
 import 'package:flutter/material.dart';
-import 'package:coffee_ui/pages/bottom_menu.dart';
-import 'package:coffee_ui/pages/coffee_model.dart';
+import 'package:coffee_ui/bloc/models/coffee_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../bloc/coffee/coffee_bloc.dart';
-import '../widgets/coffee_cart_item.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({
