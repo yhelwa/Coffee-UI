@@ -20,7 +20,7 @@ class _CoffeeSizeState extends State<CoffeeSize> {
       height: 35,
       child: ListView.separated(
         separatorBuilder: (context, index) => const SizedBox(width: 20),
-        // shrinkWrap: true,
+        shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemCount: coffeeSize.length,
         itemBuilder: (context, index) {

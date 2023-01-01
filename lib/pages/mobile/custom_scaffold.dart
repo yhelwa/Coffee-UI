@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:coffee_ui/pages/home_page.dart';
 import 'package:coffee_ui/pages/web/home_page_web.dart';
 import 'package:coffee_ui/widgets/coffee_drawer.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class CustomScaffold extends StatefulWidget {
 
 class _CustomScaffoldState extends State<CustomScaffold> {
   final List<Widget> _screens = [
-    const HomePageWeb(),
+    const HomePage(),
     const CheckoutPage(),
     const CheckoutPage(),
     const CheckoutPage()

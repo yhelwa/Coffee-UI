@@ -41,6 +41,7 @@ class _CheckoutPageWebState extends State<CheckoutPageWeb> {
                   SizedBox(height: 30),
                   Text(
                     'You\'re cart is empty',
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.bebasNeue(
                         fontSize: 45, color: Colors.white),
                   )

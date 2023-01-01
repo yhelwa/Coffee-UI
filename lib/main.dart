@@ -36,7 +36,7 @@ class MyCoffeeApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
         // initialRoute: '/custom',
-        home: const HomePage(),
+        home: const IntroPage(),
         routes: {
           '/home': (context) => const HomePageMobile(),
           '/welcome': (context) => const WelcomeScreen(),

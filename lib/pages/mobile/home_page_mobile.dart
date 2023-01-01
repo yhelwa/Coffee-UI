@@ -4,6 +4,7 @@ import 'package:coffee_ui/bloc/models/coffee_model.dart';
 import 'package:coffee_ui/pages/mobile/coffee_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../components.dart/search.dart';
 import '../../widgets/coffee_tile.dart';
 import '../../widgets/coffee_type.dart';
 
@@ -16,7 +17,7 @@ class HomePageMobile extends StatefulWidget {
 
 class _HomePageMobileState extends State<HomePageMobile> {
   Map<String, bool> coffeeType = {
-    'Cappaccino': true,
+    'Cappuccino': true,
     'Espresso': false,
     'Latte': false,
     'Flat White': false
@@ -24,7 +25,7 @@ class _HomePageMobileState extends State<HomePageMobile> {
   List<CoffeeModel> coffeeTiles = [
     CoffeeModel(
       'assets/images/coffee.png',
-      'Cappucino',
+      'Cappuccino',
       4.99,
     ),
     CoffeeModel(
@@ -83,23 +84,7 @@ class _HomePageMobileState extends State<HomePageMobile> {
               const SizedBox(
                 height: 20,
               ),
-              TextField(
-                decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.transparent),
-                  ),
-                  prefixIcon: Icon(Icons.search, color: Colors.orange.shade700),
-                  fillColor: const Color.fromRGBO(19, 25, 34, 1),
-                  filled: true,
-                  hintText: "Find your coffee...",
-                  hintStyle: TextStyle(color: Colors.grey.shade800),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.transparent),
-                  ),
-                ),
-              ),
+              const SearchBar(),
               const SizedBox(height: 20),
               SizedBox(
                 height: 35,

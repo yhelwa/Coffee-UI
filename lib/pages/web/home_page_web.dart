@@ -1,14 +1,14 @@
+import 'package:coffee_ui/pages/home_page.dart';
 import 'package:coffee_ui/pages/web/checkout_page_web.dart';
 import 'package:coffee_ui/pages/web/coffee_page_web.dart';
+import 'package:coffee_ui/pages/web/widgets/coffee_tile_web.dart';
+import 'package:coffee_ui/pages/web/widgets/coffee_type_web.dart';
 import 'package:coffee_ui/widgets/coffee_drawer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:coffee_ui/bloc/models/coffee_model.dart';
-import 'package:coffee_ui/pages/mobile/coffee_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../widgets/coffee_tile.dart';
-import '../../widgets/coffee_type.dart';
+import '../../components.dart/search.dart';
 
 class HomePageWeb extends StatefulWidget {
   const HomePageWeb({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class HomePageWeb extends StatefulWidget {
 
 class _HomePageWebState extends State<HomePageWeb> {
   Map<String, bool> coffeeType = {
-    'Cappaccino': true,
+    'Cappuccino': true,
     'Espresso': false,
     'Latte': false,
     'Flat White': false
@@ -27,7 +27,7 @@ class _HomePageWebState extends State<HomePageWeb> {
   List<CoffeeModel> coffeeTiles = [
     const CoffeeModel(
       'assets/images/coffee.png',
-      'Cappucino',
+      'Cappuccino',
       4.99,
     ),
     const CoffeeModel(
@@ -75,103 +75,99 @@ class _HomePageWebState extends State<HomePageWeb> {
       // bottomNavigationBar: const BottomMenu(),
       body: Row(
         children: [
-          const CoffeeDrawer(),
+          if (HomePage.isDesktop(context)) const CoffeeDrawer(),
           Expanded(
             flex: 3,
-            child: Column(
-              children: [
-                const SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      'Find the best coffee for you',
-                      style: GoogleFonts.bebasNeue(
-                          fontSize: 32, color: Colors.white),
-                    ),
-                    // const SizedBox(width: 100),
-                    const Spacer(),
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide:
-                                const BorderSide(color: Colors.transparent),
-                          ),
-                          prefixIcon:
-                              Icon(Icons.search, color: Colors.orange.shade700),
-                          fillColor: const Color.fromRGBO(19, 25, 34, 1),
-                          filled: true,
-                          hintText: "Find your coffee...",
-                          hintStyle: TextStyle(color: Colors.grey.shade800),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide:
-                                const BorderSide(color: Colors.transparent),
-                          ),
-                        ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  const SizedBox(height: 25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        'Find the best coffee for you',
+                        style: GoogleFonts.bebasNeue(
+                            fontSize: 32, color: Colors.white),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  height: 50,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: coffeeType.length,
-                    itemBuilder: (context, index) {
-                      String coffeeKey = coffeeType.keys.elementAt(index);
-                      return InkWell(
-                        splashColor: Colors.transparent,
-                        onTap: () {
-                          setState(() {
-                            coffeeType.updateAll((key, value) => value = false);
-                            coffeeType[coffeeKey] = true;
-                          });
-                        },
-                        child: CoffeeType(
-                          coffeeType: coffeeKey,
-                          isSelected: coffeeType.values.elementAt(index),
-                        ),
-                      );
-                    },
+                      // const SizedBox(width: 100),
+                      const Spacer(),
+                      const Expanded(
+                        child: SearchBar(),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  height: 355,
-                  child: ListView.separated(
-                      shrinkWrap: true,
-                      separatorBuilder: (context, index) => const SizedBox(
-                            width: 20,
-                          ),
+                  const SizedBox(height: 50),
+                  SizedBox(
+                    height: 55,
+                    child: ListView.separated(
                       scrollDirection: Axis.horizontal,
-                      itemCount: coffeeTiles.length,
+                      shrinkWrap: true,
+                      itemCount: coffeeType.length,
                       itemBuilder: (context, index) {
-                        return ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                          child: InkWell(
-                            onTap: (() => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => CoffeePageWeb(
-                                        coffeeModel: coffeeTiles[index],
-                                        index: index),
-                                  ),
-                                )),
-                            child: CoffeeTile(
-                              coffeeModel: coffeeTiles[index],
-                              index: index,
-                            ),
+                        String coffeeKey = coffeeType.keys.elementAt(index);
+                        return InkWell(
+                          splashFactory: NoSplash.splashFactory,
+                          splashColor: Colors.transparent,
+                          onTap: () {
+                            setState(() {
+                              coffeeType
+                                  .updateAll((key, value) => value = false);
+                              coffeeType[coffeeKey] = true;
+                            });
+                          },
+                          child: CoffeeTypeWeb(
+                            coffeeType: coffeeKey,
+                            isSelected: coffeeType.values.elementAt(index),
                           ),
                         );
-                      }),
-                ),
-              ],
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return const SizedBox(width: 40);
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 50),
+                  Expanded(
+                    // height: 355,
+                    // flex: 3,
+                    child: AspectRatio(
+                      aspectRatio: 2,
+                      child: GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 30,
+                            crossAxisSpacing: 30,
+                          ),
+                          itemCount: coffeeTiles.length,
+                          itemBuilder: (context, index) {
+                            return ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
+                              child: InkWell(
+                                onTap: (() => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => CoffeePageWeb(
+                                            coffeeModel: coffeeTiles[index],
+                                            index: index),
+                                      ),
+                                    )),
+                                child: CoffeeTileWeb(
+                                  coffeeModel: coffeeTiles[index],
+                                  index: index,
+                                ),
+                              ),
+                            );
+                          }),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
