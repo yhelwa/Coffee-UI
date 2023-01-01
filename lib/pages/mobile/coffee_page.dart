@@ -30,7 +30,7 @@ class CoffeePage extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     image: DecorationImage(
-                      image: AssetImage(coffeeModel.coffeeImagePath),
+                      image: NetworkImage(coffeeModel.coffeeImagePath),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -205,22 +205,22 @@ class CoffeePage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             RichText(
+              maxLines: 2,
+              // overflow: TextOverflow.ellipsis,
               text: TextSpan(
                 children: [
                   TextSpan(
-                      text:
-                          'A cappuccino is a coffee-based drink made primarily espresso and milk ',
+                      text: coffeeModel.coffeeDescription,
                       style: TextStyle(
                         color: Colors.grey.shade200,
-                      )),
-                  TextSpan(
-                      text: '... Read More',
-                      style: TextStyle(
-                        color: Colors.orange.shade700,
                       )),
                 ],
               ),
             ),
+            Text('... Read More',
+                style: TextStyle(
+                  color: Colors.orange.shade700,
+                )),
             const SizedBox(height: 30),
             Text(
               'Size',

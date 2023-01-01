@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'package:coffee_ui/bloc/models/coffee_model.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../components.dart/search.dart';
+import '../../components/search.dart';
 
 class HomePageWeb extends StatefulWidget {
   const HomePageWeb({Key? key}) : super(key: key);
@@ -24,24 +24,24 @@ class _HomePageWebState extends State<HomePageWeb> {
     'Latte': false,
     'Flat White': false
   };
-  List<CoffeeModel> coffeeTiles = [
-    const CoffeeModel(
-      'assets/images/coffee.png',
-      'Cappuccino',
-      4.99,
-    ),
-    const CoffeeModel(
-      'assets/images/lattee.jpg',
-      'Latte',
-      5.99,
-    ),
-    const CoffeeModel(
-      'assets/images/milk.png',
-      'Milk',
-      2.99,
-    ),
-  ];
-
+  // List<CoffeeModel> coffeeTiles = [
+  //   const CoffeeModel(
+  //     'assets/images/coffee.png',
+  //     'Cappuccino',
+  //     4.99,
+  //   ),
+  //   const CoffeeModel(
+  //     'assets/images/lattee.jpg',
+  //     'Latte',
+  //     5.99,
+  //   ),
+  //   const CoffeeModel(
+  //     'assets/images/milk.png',
+  //     'Milk',
+  //     2.99,
+  //   ),
+  // ];
+  List<CoffeeModel> coffeeTiles = [];
   int _selectedIndex = 0;
   void navigationTapped(int page) {
     print("Page is $page");

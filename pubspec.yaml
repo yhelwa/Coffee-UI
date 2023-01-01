@@ -25,6 +25,9 @@ dependencies:
   flutter_bloc:
   equatable:
   flutter_svg:
+  http: ^0.13.1
+  firebase_core: ^2.4.1
+  firebase_auth: ^4.2.4
 
 dev_dependencies:
   flutter_test:

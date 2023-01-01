@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "528926877023",
+    "project_id": "coffee-mate-6dd64",
+    "storage_bucket": "coffee-mate-6dd64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528926877023:android:e19819e944afdc591ec2ea",
+        "android_client_info": {
+          "package_name": "com.helwa.coffeeUI"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528926877023-sphmk359lffknedhhfmak6abn4smonni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3zUYhy8PqvydyPeXynEXAikSDfUPBHZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528926877023-sphmk359lffknedhhfmak6abn4smonni.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "528926877023-3nj18ff0h47crkno963868r3d034jqk5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.helwa.coffeeUI"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

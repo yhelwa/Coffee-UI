@@ -1,10 +1,15 @@
+import 'package:coffee_ui/components/special.dart';
+import 'package:coffee_ui/pages/web/checkout_page_web.dart';
+import 'package:coffee_ui/providers/api.dart';
+import 'package:coffee_ui/widgets/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:coffee_ui/bloc/models/coffee_model.dart';
 import 'package:coffee_ui/pages/mobile/coffee_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../components.dart/search.dart';
+import '../../components/search.dart';
 import '../../widgets/coffee_tile.dart';
 import '../../widgets/coffee_type.dart';
 
@@ -22,31 +27,31 @@ class _HomePageMobileState extends State<HomePageMobile> {
     'Latte': false,
     'Flat White': false
   };
-  List<CoffeeModel> coffeeTiles = [
-    CoffeeModel(
-      'assets/images/coffee.png',
-      'Cappuccino',
-      4.99,
-    ),
-    CoffeeModel(
-      'assets/images/lattee.jpg',
-      'Latte',
-      5.99,
-    ),
-    CoffeeModel(
-      'assets/images/milk.png',
-      'Milk',
-      2.99,
-    ),
-  ];
+  List<CoffeeModel>? coffeeTiles;
+  // List<CoffeeModel> coffeeTiles = [
+  //   const CoffeeModel(
+  //     'assets/images/coffee.png',
+  //     'Cappuccino',
+  //     4.99,
+  //   ),
+  //   const CoffeeModel(
+  //     'assets/images/lattee.jpg',
+  //     'Latte',
+  //     5.99,
+  //   ),
+  //   const CoffeeModel(
+  //     'assets/images/milk.png',
+  //     'Milk',
+  //     2.99,
+  //   ),
+  // ];
+  late Stream<List<CoffeeModel>> _coffeeStream;
 
-  int _selectedIndex = 0;
-  void navigationTapped(int page) {
-    print("Page is $page");
+  @override
+  void initState() {
+    _coffeeStream = API.getCoffees();
 
-    setState(() {
-      _selectedIndex = page;
-    });
+    super.initState();
   }
 
   @override
@@ -62,11 +67,14 @@ class _HomePageMobileState extends State<HomePageMobile> {
           },
           icon: const Icon(Icons.menu),
         ),
-        actions: const [
+        actions: [
           Padding(
-              padding: EdgeInsets.only(right: 25.0),
-              child: Icon(
-                Icons.person,
+              padding: const EdgeInsets.only(right: 25.0),
+              child: IconButton(
+                onPressed: signUserOut,
+                icon: const Icon(
+                  Icons.person,
+                ),
               ))
         ],
       ),
@@ -110,39 +118,79 @@ class _HomePageMobileState extends State<HomePageMobile> {
                 ),
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                height: 355,
-                child: ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(
-                          width: 20,
-                        ),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: coffeeTiles.length,
-                    itemBuilder: (context, index) {
-                      return ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                        child: InkWell(
-                          onTap: (() => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CoffeePage(
-                                      coffeeModel: coffeeTiles[index],
-                                      index: index),
-                                ),
-                              )),
-                          child: CoffeeTile(
-                            coffeeModel: coffeeTiles[index],
-                            index: index,
-                          ),
-                        ),
+              StreamBuilder<List<CoffeeModel>>(
+                  stream: _coffeeStream,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
                       );
-                    }),
-              ),
+                    } else {
+                      print('object');
+                      coffeeTiles = snapshot.data;
+                      return Column(
+                        children: [
+                          SizedBox(
+                            height: 355,
+                            child: ListView.separated(
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(width: 20),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: coffeeTiles!.length - 2,
+                                itemBuilder: (context, index) {
+                                  return ClipRRect(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(20)),
+                                    child: InkWell(
+                                      onTap: (() => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => CoffeePage(
+                                                  coffeeModel:
+                                                      coffeeTiles![index],
+                                                  index: index),
+                                            ),
+                                          )),
+                                      child: CoffeeTile(
+                                        coffeeModel: coffeeTiles![index],
+                                        index: index,
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Text(
+                            'Special for you',
+                            style: CoffeeTextStyle.copyWith(fontSize: 32),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          SizedBox(
+                            height: 600,
+                            child: ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: 3,
+                                itemBuilder: (context, index) {
+                                  return SpecialForYou(
+                                      coffee: coffeeTiles![index]);
+                                }),
+                          ),
+                        ],
+                      );
+                    }
+                  }),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void signUserOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 }

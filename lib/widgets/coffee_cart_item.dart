@@ -64,7 +64,7 @@ class _CoffeeCartItemState extends State<CoffeeCartItem> {
                 children: [
                   ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    child: Image.asset(
+                    child: Image.network(
                       widget.coffeeModel.coffeeImagePath,
                       width: 100,
                       height: 100,

@@ -1,4 +1,5 @@
 import 'package:coffee_ui/widgets/custom_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,18 +79,21 @@ class _LoginScreenState extends State<LoginScreen>
           ],
         ),
         const SizedBox(height: 25),
-        CustomButton(buttonText: "Sign in", onTapped: signIn),
+        CustomButton(buttonText: "Sign in", onTapped: signUserIn),
       ],
     );
   }
 
-  void signIn() {
-    setState(() {
-      _loading = true;
-    });
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/custom');
-      _loading = false;
-    });
+  void signUserIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text, password: passwordController.text);
+
+    // setState(() {
+    //   _loading = true;
+    // });
+    // Future.delayed(const Duration(seconds: 2), () {
+    //   Navigator.pushReplacementNamed(context, '/custom');
+    //   _loading = false;
+    // });
   }
 }

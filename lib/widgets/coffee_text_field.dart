@@ -18,10 +18,12 @@ class CoffeeTextField extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 25.0),
       child: TextFormField(
         controller: controller,
+        obscureText: isObscure,
+        obscuringCharacter: '*',
         style: GoogleFonts.montserrat(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            letterSpacing: isObscure ? 5 : null),
         cursorColor: const Color(0xffB7B7BD),
         decoration: InputDecoration(
           contentPadding:
