@@ -47,7 +47,7 @@ class MyCoffeeApp extends StatelessWidget {
           '/home': (context) => const HomePageMobile(),
           '/welcome': (context) => const WelcomeScreen(),
           '/checkout': (context) => const CheckoutPage(),
-          '/custom': (context) => CustomScaffold(selectedIndex: 0),
+          '/custom': (context) => CustomScaffold(selectedIndex: 2),
         },
       ),
     );

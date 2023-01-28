@@ -2,6 +2,7 @@
 
 import 'package:coffee_ui/bloc/coffee/coffee_bloc.dart';
 import 'package:coffee_ui/widgets/coffee_cart_item.dart';
+import 'package:coffee_ui/widgets/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee_ui/bloc/models/coffee_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,11 +55,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       color: Colors.orange.shade700,
                     ),
                     SizedBox(height: 30),
-                    Text(
-                      'You\'re cart is empty',
-                      style: GoogleFonts.bebasNeue(
-                          fontSize: 45, color: Colors.white),
-                    )
+                    Text('You\'re cart is empty',
+                        style: CoffeeTextStyle.copyWith(fontSize: 45))
                   ],
                 ),
               );
