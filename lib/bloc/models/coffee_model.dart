@@ -1,6 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:equatable/equatable.dart';
-
 class CoffeeModel {
   final String coffeeName;
   final String coffeeDescription;
@@ -13,10 +10,6 @@ class CoffeeModel {
     required this.coffeeImagePath,
     required this.coffeePrice,
   });
-
-  @override
-  List<Object?> get props =>
-      [coffeeName, coffeeDescription, coffeeImagePath, coffeePrice];
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
