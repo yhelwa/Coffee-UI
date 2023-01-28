@@ -1,11 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:coffee_ui/bloc/models/coffee_model.dart';
-
 import '../widgets/constants.dart';
 
 class SpecialForYou extends StatelessWidget {
@@ -19,7 +15,7 @@ class SpecialForYou extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 30),
+      margin: const EdgeInsets.only(bottom: 30),
       height: 120,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20)),

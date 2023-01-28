@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:coffee_ui/bloc/models/coffee_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -45,6 +44,8 @@ class API {
       }
       // CoffeeModel.fromMap(json.decode(response.body));
       print(coffeeList[2].coffeeName);
+      coffeeList.removeAt(coffeeList.length - 1);
+      coffeeList.removeAt(coffeeList.length - 1);
       return coffeeList;
     } else {
       print(json.decode(response.body));

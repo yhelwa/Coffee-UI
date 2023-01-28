@@ -1,4 +1,7 @@
+import 'package:coffee_ui/bloc/coffee/coffee_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/coffee/coffee_event.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({
@@ -7,6 +10,7 @@ class SearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CoffeeBloc _coffeeBloc = BlocProvider.of<CoffeeBloc>(context);
     return TextField(
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
@@ -24,7 +28,7 @@ class SearchBar extends StatelessWidget {
         ),
       ),
       onChanged: (value) {
-        print(value);
+        _coffeeBloc.add(FilterSearch(value.trim()));
       },
     );
   }

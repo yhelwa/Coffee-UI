@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:coffee_ui/bloc/models/coffee_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../bloc/coffee/coffee_state.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -44,8 +43,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
       body: SafeArea(
         child: BlocBuilder<CoffeeBloc, CoffeeState>(
           builder: (context, state) {
-            print('Coffee Cart Length is ');
-            print(state.coffeeCartList!.length);
             if (state.coffeeCartList!.isEmpty) {
               return Center(
                 child: Column(

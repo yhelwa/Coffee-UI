@@ -25,6 +25,7 @@ class CoffeeTile extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(20)),
