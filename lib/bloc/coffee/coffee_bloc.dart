@@ -1,34 +1,33 @@
 import 'package:bloc/bloc.dart';
 import 'package:coffee_ui/bloc/models/coffee_model.dart';
-import 'package:equatable/equatable.dart';
-
-part 'coffee_event.dart';
-part 'coffee_state.dart';
+import '../../providers/api.dart';
+import 'coffee_state.dart';
+import 'coffee_event.dart';
 
 class CoffeeBloc extends Bloc<CoffeeEvent, CoffeeState> {
-  CoffeeBloc() : super(CoffeeInitial()) {
-    on<LoadCoffee>((event, emit) async {
-      await Future<void>.delayed(const Duration(seconds: 1));
-
-      emit(const CoffeeLoaded(coffees: <CoffeeModel>[]));
+  CoffeeBloc() : super(CoffeeState(coffeeCartList: [], coffeeItems: [])) {
+    on<FetchCoffeeItems>((event, emit) async {
+      print('Fetching coffee items');
+      List<CoffeeModel> coffeeItems = await API.getCoffees();
+      emit(
+        state.copyWith(CoffeeState(coffeeItems: coffeeItems)),
+      );
     });
-
     on<AddCoffee>((event, emit) {
-      if (state is CoffeeLoaded) {
-        final state = this.state as CoffeeLoaded;
-        print('Added coffee');
-        emit(
-            CoffeeLoaded(coffees: List.from(state.coffees)..add(event.coffee)));
-      }
+      final state = this.state;
+      print('Added coffee');
+      emit(state.copyWith(
+        CoffeeState(coffeeCartList: state.coffeeCartList!..add(event.coffee)),
+      ));
     });
 
     on<RemoveCoffee>((event, emit) {
-      if (state is CoffeeLoaded) {
-        final state = this.state as CoffeeLoaded;
-        print('Remove coffee');
-        emit(CoffeeLoaded(
-            coffees: List.from(state.coffees)..remove(event.coffee)));
-      }
+      final state = this.state;
+      print('Removed coffee');
+      emit(state.copyWith(
+        CoffeeState(
+            coffeeCartList: state.coffeeCartList!..remove(event.coffee)),
+      ));
     });
 
     on<Login>((event, emit) {

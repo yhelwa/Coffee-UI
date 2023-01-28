@@ -23,6 +23,9 @@ class SearchBar extends StatelessWidget {
           borderSide: const BorderSide(color: Colors.transparent),
         ),
       ),
+      onChanged: (value) {
+        print(value);
+      },
     );
   }
 }

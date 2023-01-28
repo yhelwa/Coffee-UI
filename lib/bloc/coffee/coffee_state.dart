@@ -1,19 +1,17 @@
-part of 'coffee_bloc.dart';
+// ignore_for_file: unnecessary_this
 
-abstract class CoffeeState extends Equatable {
-  const CoffeeState();
+import 'package:coffee_ui/bloc/models/coffee_model.dart';
 
-  @override
-  List<Object> get props => [];
-}
+class CoffeeState {
+  List<CoffeeModel>? coffeeCartList;
+  List<CoffeeModel>? coffeeItems;
 
-class CoffeeInitial extends CoffeeState {}
+  CoffeeState({this.coffeeCartList, this.coffeeItems});
 
-class CoffeeLoaded extends CoffeeState {
-  final List<CoffeeModel> coffees;
-
-  const CoffeeLoaded({required this.coffees});
-
-  @override
-  List<Object> get props => [coffees];
+  CoffeeState copyWith(CoffeeState coffeeState) {
+    return CoffeeState(
+      coffeeCartList: coffeeState.coffeeCartList ?? this.coffeeCartList,
+      coffeeItems: coffeeState.coffeeItems ?? this.coffeeItems,
+    );
+  }
 }

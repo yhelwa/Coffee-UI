@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../bloc/coffee/coffee_bloc.dart';
+import '../../../bloc/coffee/coffee_event.dart';
+import '../../../bloc/coffee/coffee_state.dart';
 
 class CoffeeTileWeb extends StatelessWidget {
   final CoffeeModel coffeeModel;
@@ -95,9 +97,6 @@ class CoffeeTileWeb extends StatelessWidget {
                       builder: (context, state) {
                         return InkWell(
                           onTap: (() {
-                            if (state is CoffeeLoaded) {
-                              print(state.coffees.length);
-                            }
                             // CheckoutPage.coffeeList.value.add(coffeeModel);
                             // print(CheckoutPage.coffeeList.value);
                             print('Inside add coffee');

@@ -1,3 +1,4 @@
+import 'package:coffee_ui/bloc/profile/profile_bloc.dart';
 import 'package:coffee_ui/pages/auth_page.dart';
 import 'package:coffee_ui/pages/mobile/custom_scaffold.dart';
 import 'package:coffee_ui/pages/mobile/home_page_mobile.dart';
@@ -8,6 +9,7 @@ import 'package:coffee_ui/pages/mobile/checkout_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/coffee/coffee_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'bloc/coffee/coffee_event.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -28,8 +30,9 @@ class MyCoffeeApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CoffeeBloc()..add(LoadCoffee()),
+          create: (context) => CoffeeBloc(),
         ),
+        BlocProvider(create: (context) => ProfileBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

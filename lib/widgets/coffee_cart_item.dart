@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:coffee_ui/bloc/models/coffee_model.dart';
 
+import '../bloc/coffee/coffee_event.dart';
+import '../bloc/coffee/coffee_state.dart';
+
 class CoffeeCartItem extends StatefulWidget {
   final CoffeeModel coffeeModel;
   final int coffeeCount;
@@ -39,17 +42,15 @@ class _CoffeeCartItemState extends State<CoffeeCartItem> {
               ),
             ),
             onDismissed: (direction) {
-              if (state is CoffeeLoaded) {
-                List<CoffeeModel> coffeeList = state.coffees
-                    .where((element) => element == widget.coffeeModel)
-                    .toList();
+              List<CoffeeModel> coffeeList = state.coffeeCartList!
+                  .where((element) => element == widget.coffeeModel)
+                  .toList();
 
-                coffeeList.forEach((coffee) {
-                  context.read<CoffeeBloc>().add(RemoveCoffee(coffee: coffee));
-                });
+              coffeeList.forEach((coffee) {
+                context.read<CoffeeBloc>().add(RemoveCoffee(coffee: coffee));
+              });
 
-                print(state.coffees.length);
-              }
+              print(state.coffeeCartList!.length);
             },
             child: Container(
               padding: const EdgeInsets.all(15),

@@ -1,6 +1,7 @@
 import 'package:coffee_ui/components/special.dart';
 import 'package:coffee_ui/pages/web/checkout_page_web.dart';
 import 'package:coffee_ui/providers/api.dart';
+import 'package:coffee_ui/widgets/coffee_drawer.dart';
 import 'package:coffee_ui/widgets/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:coffee_ui/pages/mobile/coffee_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../components/search.dart';
+import '../../widgets/coffee_list.dart';
 import '../../widgets/coffee_tile.dart';
 import '../../widgets/coffee_type.dart';
 
@@ -21,13 +23,14 @@ class HomePageMobile extends StatefulWidget {
 }
 
 class _HomePageMobileState extends State<HomePageMobile> {
-  Map<String, bool> coffeeType = {
-    'Cappuccino': true,
-    'Espresso': false,
-    'Latte': false,
-    'Flat White': false
-  };
-  List<CoffeeModel>? coffeeTiles;
+  int selectedIndex = 0;
+  List<String> coffeeType = [
+    'Cappuccino',
+    'Espresso',
+    'Latte',
+    'Flat White',
+  ];
+
   // List<CoffeeModel> coffeeTiles = [
   //   const CoffeeModel(
   //     'assets/images/coffee.png',
@@ -45,35 +48,22 @@ class _HomePageMobileState extends State<HomePageMobile> {
   //     2.99,
   //   ),
   // ];
-  late Stream<List<CoffeeModel>> _coffeeStream;
-
-  @override
-  void initState() {
-    _coffeeStream = API.getCoffees();
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const CoffeeDrawer(),
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 50,
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/welcome');
-          },
-          icon: const Icon(Icons.menu),
-        ),
         actions: [
           Padding(
               padding: const EdgeInsets.only(right: 25.0),
               child: IconButton(
                 onPressed: signUserOut,
                 icon: const Icon(
-                  Icons.person,
+                  Icons.logout,
                 ),
               ))
         ],
@@ -100,89 +90,23 @@ class _HomePageMobileState extends State<HomePageMobile> {
                   scrollDirection: Axis.horizontal,
                   itemCount: coffeeType.length,
                   itemBuilder: (context, index) {
-                    String coffeeKey = coffeeType.keys.elementAt(index);
                     return InkWell(
                       splashColor: Colors.transparent,
                       onTap: () {
                         setState(() {
-                          coffeeType.updateAll((key, value) => value = false);
-                          coffeeType[coffeeKey] = true;
+                          selectedIndex = index;
                         });
                       },
                       child: CoffeeType(
-                        coffeeType: coffeeKey,
-                        isSelected: coffeeType.values.elementAt(index),
+                        coffeeType: coffeeType[index],
+                        isSelected: selectedIndex == index,
                       ),
                     );
                   },
                 ),
               ),
               const SizedBox(height: 20),
-              StreamBuilder<List<CoffeeModel>>(
-                  stream: _coffeeStream,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else {
-                      print('object');
-                      coffeeTiles = snapshot.data;
-                      return Column(
-                        children: [
-                          SizedBox(
-                            height: 355,
-                            child: ListView.separated(
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox(width: 20),
-                                scrollDirection: Axis.horizontal,
-                                itemCount: coffeeTiles!.length - 2,
-                                itemBuilder: (context, index) {
-                                  return ClipRRect(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(20)),
-                                    child: InkWell(
-                                      onTap: (() => Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => CoffeePage(
-                                                  coffeeModel:
-                                                      coffeeTiles![index],
-                                                  index: index),
-                                            ),
-                                          )),
-                                      child: CoffeeTile(
-                                        coffeeModel: coffeeTiles![index],
-                                        index: index,
-                                      ),
-                                    ),
-                                  );
-                                }),
-                          ),
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          Text(
-                            'Special for you',
-                            style: CoffeeTextStyle.copyWith(fontSize: 32),
-                          ),
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          SizedBox(
-                            height: 600,
-                            child: ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: 3,
-                                itemBuilder: (context, index) {
-                                  return SpecialForYou(
-                                      coffee: coffeeTiles![index]);
-                                }),
-                          ),
-                        ],
-                      );
-                    }
-                  }),
+              const CoffeeListSpecial(),
             ],
           ),
         ),
@@ -191,6 +115,7 @@ class _HomePageMobileState extends State<HomePageMobile> {
   }
 
   void signUserOut() async {
+    print("Signing out");
     await FirebaseAuth.instance.signOut();
   }
 }

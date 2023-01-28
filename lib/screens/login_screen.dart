@@ -1,10 +1,13 @@
 import 'package:coffee_ui/widgets/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
+import '../bloc/profile/profile_bloc.dart';
+import '../bloc/profile/profile_event.dart';
 import '../widgets/coffee_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -85,8 +88,11 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   void signUserIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text, password: passwordController.text);
+    print("Signing user in");
+    ProfileBloc _profile = BlocProvider.of<ProfileBloc>(context);
+    _profile.add(SaveProfileDetails(
+        email: emailController.text, password: passwordController.text));
+    _profile.add(FetchCredentials());
 
     // setState(() {
     //   _loading = true;

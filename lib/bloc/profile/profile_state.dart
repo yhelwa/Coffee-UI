@@ -1,10 +1,19 @@
-part of 'profile_bloc.dart';
+// ignore_for_file: unnecessary_this
 
-abstract class ProfileState extends Equatable {
-  const ProfileState();
-  
-  @override
-  List<Object> get props => [];
+class ProfileState {
+  dynamic email;
+  dynamic password;
+  bool? authenticated;
+  dynamic fetchState;
+
+  ProfileState(
+      {this.email, this.password, this.authenticated, this.fetchState});
+
+  ProfileState copyWith(ProfileState profileState) {
+    return ProfileState(
+        email: profileState.email ?? this.email,
+        password: profileState.password ?? this.password,
+        authenticated: profileState.authenticated ?? this.authenticated,
+        fetchState: profileState.fetchState ?? this.fetchState);
+  }
 }
-
-class ProfileInitial extends ProfileState {}

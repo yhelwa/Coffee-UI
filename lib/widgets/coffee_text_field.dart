@@ -21,9 +21,9 @@ class CoffeeTextField extends StatelessWidget {
         obscureText: isObscure,
         obscuringCharacter: '*',
         style: GoogleFonts.montserrat(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            letterSpacing: isObscure ? 5 : null),
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
         cursorColor: const Color(0xffB7B7BD),
         decoration: InputDecoration(
           contentPadding:

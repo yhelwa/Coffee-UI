@@ -1,8 +1,19 @@
-part of 'profile_bloc.dart';
+class ProfileEvents {
+  final dynamic email;
+  final dynamic password;
+  ProfileEvents({this.email, this.password});
+}
 
-abstract class ProfileEvent extends Equatable {
-  const ProfileEvent();
+class FetchCredentials extends ProfileEvents {
+  FetchCredentials();
+}
 
-  @override
-  List<Object> get props => [];
+class SaveProfileDetails extends ProfileEvents {
+  SaveProfileDetails({
+    dynamic email,
+    dynamic password,
+  }) : super(
+          email: email,
+          password: password,
+        );
 }

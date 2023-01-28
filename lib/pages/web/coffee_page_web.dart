@@ -3,6 +3,8 @@ import 'package:coffee_ui/bloc/coffee/coffee_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../bloc/coffee/coffee_event.dart';
+import '../../bloc/coffee/coffee_state.dart';
 import '../../widgets/coffee_size.dart';
 import '../../widgets/custom_icon.dart';
 import '../../bloc/models/coffee_model.dart';
@@ -259,9 +261,8 @@ class CoffeePageWeb extends StatelessWidget {
                   builder: (context, state) {
                     return InkWell(
                       onTap: (() {
-                        if (state is CoffeeLoaded) {
-                          print(state.coffees.length);
-                        }
+                        print(state.coffeeCartList!.length);
+
                         // CheckoutPage.coffeeList.value.add(coffeeModel);
                         // print(CheckoutPage.coffeeList.value);
                         print('Inside add coffee');
