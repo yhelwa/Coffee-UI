@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/coffee/coffee_event.dart';
 import '../bloc/coffee/coffee_state.dart';
-import '../bloc/models/coffee_model.dart';
+import '../models/coffee_model.dart';
 import '../pages/mobile/coffee_page.dart';
 import 'coffee_tile.dart';
 import 'constants.dart';

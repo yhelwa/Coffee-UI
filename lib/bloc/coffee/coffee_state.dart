@@ -1,4 +1,4 @@
-import 'package:coffee_ui/bloc/models/coffee_model.dart';
+import 'package:coffee_ui/models/coffee_model.dart';
 
 class CoffeeState {
   List<CoffeeModel>? coffeeCartList;

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:coffee_ui/bloc/models/coffee_model.dart';
+import 'package:coffee_ui/models/coffee_model.dart';
 
 class CoffeePrefs {
   static SharedPreferences? pref;

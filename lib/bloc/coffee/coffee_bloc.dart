@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:coffee_ui/bloc/models/coffee_model.dart';
+import 'package:coffee_ui/models/coffee_model.dart';
 import 'coffee_state.dart';
 import 'coffee_event.dart';
 

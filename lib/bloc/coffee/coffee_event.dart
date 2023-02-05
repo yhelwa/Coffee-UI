@@ -1,4 +1,4 @@
-import '../models/coffee_model.dart';
+import '../../models/coffee_model.dart';
 
 class CoffeeEvent {
   const CoffeeEvent();

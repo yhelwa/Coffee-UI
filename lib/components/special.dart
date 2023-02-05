@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:coffee_ui/bloc/models/coffee_model.dart';
+import 'package:coffee_ui/models/coffee_model.dart';
 import '../widgets/constants.dart';
 
 class SpecialForYou extends StatelessWidget {
