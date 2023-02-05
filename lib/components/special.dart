@@ -30,7 +30,8 @@ class SpecialForYou extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
-            child: Image.network(
+            child: Image.asset(
+              // Image.network(
               coffee.coffeeImagePath,
               fit: BoxFit.cover,
               width: 170,

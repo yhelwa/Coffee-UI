@@ -87,8 +87,7 @@ class IntroPageState extends State<IntroPage> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      CustomScaffold(selectedIndex: 0)),
+                                  builder: (context) => const CustomScaffold()),
                               (route) => false);
                         }),
                         child: const Icon(

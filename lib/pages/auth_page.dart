@@ -23,7 +23,7 @@ class AuthPage extends StatelessWidget {
               if (!profile.authenticated! && profile.fetchState == 'fetching') {
                 return const LoadingCoffee();
               } else if (snapshot.hasData) {
-                return CustomScaffold(selectedIndex: 0);
+                return const CustomScaffold();
               } else {
                 //user is logged out
                 return const WelcomeScreen();

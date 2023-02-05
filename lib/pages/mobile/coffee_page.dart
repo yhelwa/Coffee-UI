@@ -271,9 +271,7 @@ class CoffeePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CustomScaffold(
-                              selectedIndex: 1,
-                            ),
+                            builder: (context) => const CustomScaffold(),
                           ),
                         );
                       }),

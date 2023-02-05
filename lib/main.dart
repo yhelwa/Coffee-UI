@@ -1,4 +1,5 @@
 import 'package:coffee_ui/bloc/profile/profile_bloc.dart';
+import 'package:coffee_ui/bloc/ui/ui_bloc.dart';
 import 'package:coffee_ui/pages/auth_page.dart';
 import 'package:coffee_ui/pages/mobile/custom_scaffold.dart';
 import 'package:coffee_ui/pages/mobile/home_page_mobile.dart';
@@ -33,6 +34,7 @@ class MyCoffeeApp extends StatelessWidget {
           create: (context) => CoffeeBloc(),
         ),
         BlocProvider(create: (context) => ProfileBloc()),
+        BlocProvider(create: (context) => UIBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -42,12 +44,12 @@ class MyCoffeeApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
         // initialRoute: '/custom',
-        home: const AuthPage(),
+        home: const CustomScaffold(),
         routes: {
           '/home': (context) => const HomePageMobile(),
           '/welcome': (context) => const WelcomeScreen(),
           '/checkout': (context) => const CheckoutPage(),
-          '/custom': (context) => CustomScaffold(selectedIndex: 2),
+          '/custom': (context) => const CustomScaffold(),
         },
       ),
     );

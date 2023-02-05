@@ -1,7 +1,10 @@
 part of 'ui_bloc.dart';
 
 class UIState {
-  const UIState();
-}
+  int? uiIndex;
+  UIState({this.uiIndex});
 
-class UIInitial extends UIState {}
+  UIState copyWith(UIState uiState) {
+    return UIState(uiIndex: uiState.uiIndex ?? uiIndex);
+  }
+}

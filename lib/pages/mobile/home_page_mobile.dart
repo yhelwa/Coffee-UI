@@ -1,23 +1,13 @@
-import 'package:coffee_ui/components/special.dart';
-import 'package:coffee_ui/pages/web/checkout_page_web.dart';
-import 'package:coffee_ui/providers/api.dart';
 import 'package:coffee_ui/widgets/coffee_drawer.dart';
-import 'package:coffee_ui/widgets/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'package:coffee_ui/bloc/models/coffee_model.dart';
-import 'package:coffee_ui/pages/mobile/coffee_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../components/search.dart';
 import '../../widgets/coffee_list.dart';
-import '../../widgets/coffee_tile.dart';
 import '../../widgets/coffee_type.dart';
 
 class HomePageMobile extends StatefulWidget {
   const HomePageMobile({Key? key}) : super(key: key);
-
   @override
   State<HomePageMobile> createState() => _HomePageMobileState();
 }
