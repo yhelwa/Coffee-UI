@@ -4,10 +4,11 @@ import 'package:coffee_ui/bloc/coffee/coffee_bloc.dart';
 import 'package:coffee_ui/widgets/coffee_cart_item.dart';
 import 'package:coffee_ui/widgets/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:coffee_ui/models/coffee_model.dart';
+import 'package:coffee_ui/models/coffee_model_2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../bloc/coffee/coffee_state.dart';
+import '../../models/coffee_model.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({

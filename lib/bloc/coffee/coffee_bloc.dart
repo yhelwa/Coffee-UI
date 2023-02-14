@@ -1,34 +1,41 @@
 import 'package:bloc/bloc.dart';
 import 'package:coffee_ui/models/coffee_model.dart';
+import 'package:coffee_ui/models/coffee_model_2.dart';
+import 'package:coffee_ui/models/menu_model.dart';
+import '../../providers/api.dart';
 import 'coffee_state.dart';
 import 'coffee_event.dart';
 
 class CoffeeBloc extends Bloc<CoffeeEvent, CoffeeState> {
   CoffeeBloc()
       : super(CoffeeState(
-            coffeeCartList: [], coffeeItems: [], filteredCoffeeItems: [])) {
+            coffeeCartList: [],
+            coffeeList: [],
+            coffeeItems: [],
+            filteredCoffeeItems: [],
+            indexType: 0)) {
     on<FetchCoffeeItems>((event, emit) async {
       print('Fetching coffee items');
-      // List<CoffeeModel> coffeeItems = await API.getCoffees();
-      List<CoffeeModel> coffeeItems = [
-        CoffeeModel(
-            coffeeImagePath: 'assets/images/coffee.png',
-            coffeeName: 'Cappuccino',
-            coffeePrice: 4.99,
-            coffeeDescription: ''),
-        CoffeeModel(
-            coffeeImagePath: 'assets/images/lattee.jpg',
-            coffeeName: 'Latte',
-            coffeePrice: 5.99,
-            coffeeDescription: ''),
-        CoffeeModel(
-          coffeeImagePath: 'assets/images/milk.png',
-          coffeeName: 'Milk',
-          coffeePrice: 2.99,
-          coffeeDescription: '',
-        ),
-      ];
-
+      List<MenuModel> coffeeItems = await API.getCoffees();
+      // List<CoffeeModel> coffeeItems = [
+      //   CoffeeModel(
+      //       coffeeImagePath: 'assets/images/coffee.png',
+      //       coffeeName: 'Cappuccino',
+      //       coffeePrice: 4.99,
+      //       coffeeDescription: ''),
+      //   CoffeeModel(
+      //       coffeeImagePath: 'assets/images/lattee.jpg',
+      //       coffeeName: 'Latte',
+      //       coffeePrice: 5.99,
+      //       coffeeDescription: ''),
+      //   CoffeeModel(
+      //     coffeeImagePath: 'assets/images/milk.png',
+      //     coffeeName: 'Milk',
+      //     coffeePrice: 2.99,
+      //     coffeeDescription: '',
+      //   ),
+      // ];
+      print(coffeeItems.first.coffeeTypes.first.name);
       emit(
         state.copyWith(CoffeeState(
             coffeeItems: coffeeItems, filteredCoffeeItems: coffeeItems)),
@@ -54,14 +61,21 @@ class CoffeeBloc extends Bloc<CoffeeEvent, CoffeeState> {
     });
 
     on<FilterSearch>((event, emit) {
-      List<CoffeeModel> coffeeList = state.coffeeItems!
-          .where((coffee) => coffee.coffeeName
-              .toLowerCase()
-              .startsWith(event.value.toLowerCase()))
+      List<MenuModel> coffeeList = state.coffeeItems!
+          .where((coffee) =>
+              coffee.name.toLowerCase().startsWith(event.value.toLowerCase()))
           .toList();
+
       emit(state.copyWith(CoffeeState(
           filteredCoffeeItems:
               event.value.isEmpty ? state.coffeeItems : coffeeList)));
+    });
+    on<FilterType>((event, emit) {
+      // List<CoffeeModel> coffeeList = state
+      //     .coffeeItems!.first.coffeeTypes[event.indexType].products
+      //     .elementAt(1)
+      //     .coffees;
+      emit(state.copyWith(CoffeeState(indexType: event.indexType)));
     });
   }
 }

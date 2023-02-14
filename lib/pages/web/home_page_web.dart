@@ -5,7 +5,6 @@ import 'package:coffee_ui/pages/web/widgets/coffee_tile_web.dart';
 import 'package:coffee_ui/pages/web/widgets/coffee_type_web.dart';
 import 'package:coffee_ui/widgets/coffee_drawer.dart';
 import 'package:flutter/material.dart';
-
 import 'package:coffee_ui/models/coffee_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../components/search.dart';

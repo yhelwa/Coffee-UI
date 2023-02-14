@@ -6,9 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../bloc/coffee/coffee_event.dart';
 import '../../bloc/coffee/coffee_state.dart';
+import '../../models/coffee_model.dart';
 import '../../widgets/coffee_size.dart';
 import '../../widgets/custom_icon.dart';
-import '../../models/coffee_model.dart';
 
 class CoffeePage extends StatelessWidget {
   final CoffeeModel coffeeModel;
@@ -51,89 +51,157 @@ class CoffeePage extends StatelessWidget {
                       ),
                       const Spacer(),
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(50),
+                            bottomRight: Radius.circular(50)),
                         child: BackdropFilter(
                           // blendMode: BlendMode.dstOver,
                           filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
                           child: SizedBox(
                             height: 150,
-                            width: MediaQuery.of(context).size.width,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      coffeeModel.coffeeName,
-                                      style: const TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      'With Oat Milk',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey.shade500,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 20),
-                                    Row(
+                            // width: MediaQuery.of(context).size.width,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Icon(Icons.star,
-                                            color: Colors.orange.shade700),
-                                        const SizedBox(width: 10),
-                                        const Text('4.5'),
-                                        const SizedBox(width: 5),
                                         Text(
-                                          '(6,986)',
+                                          coffeeModel.coffeeName,
+                                          // softWrap: false,
+                                          style: const TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        // Expanded(
+                                        //   child: RichText(
+                                        //     text: TextSpan(
+                                        //       style: const TextStyle(
+                                        //           fontSize: 24,
+                                        //           fontWeight: FontWeight.bold),
+                                        //       children: [
+                                        //         TextSpan(
+                                        //           text: coffeeModel.coffeeName,
+                                        //         ),
+                                        //       ],
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        Text(
+                                          'With Oat Milk',
                                           style: TextStyle(
                                             fontSize: 14,
-                                            color: Colors.grey.shade600,
+                                            color: Colors.grey.shade500,
                                           ),
+                                        ),
+                                        const SizedBox(height: 20),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.star,
+                                                color: Colors.orange.shade700),
+                                            const SizedBox(width: 10),
+                                            const Text('4.5'),
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              '(6,986)',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.grey.shade600,
+                                              ),
+                                            )
+                                          ],
                                         )
                                       ],
-                                    )
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
+                                    ),
+                                  ),
+                                  // const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(10),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            gradient: const LinearGradient(
-                                              colors: [
-                                                Color.fromRGBO(33, 38, 48, 1),
-                                                Colors.black
-                                              ],
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                            ),
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              Icon(
-                                                Icons.coffee,
-                                                color: Colors.orange.shade700,
-                                              ),
-                                              Text(
-                                                'Coffee',
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.grey.shade600,
+                                        Row(
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color.fromRGBO(
+                                                        33, 38, 48, 1),
+                                                    Colors.black
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
                                                 ),
-                                              )
-                                            ],
-                                          ),
+                                              ),
+                                              child: Column(
+                                                children: [
+                                                  Icon(
+                                                    Icons.coffee,
+                                                    color:
+                                                        Colors.orange.shade700,
+                                                  ),
+                                                  Text(
+                                                    'Coffee',
+                                                    style: TextStyle(
+                                                      fontSize: 10,
+                                                      color:
+                                                          Colors.grey.shade600,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(width: 15),
+                                            Container(
+                                              padding: const EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color.fromRGBO(
+                                                        33, 38, 48, 1),
+                                                    Colors.black
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                ),
+                                              ),
+                                              child: Column(
+                                                children: [
+                                                  Icon(
+                                                    Icons.water_drop,
+                                                    color:
+                                                        Colors.orange.shade700,
+                                                  ),
+                                                  Text(
+                                                    'Milk',
+                                                    style: TextStyle(
+                                                      fontSize: 10,
+                                                      color:
+                                                          Colors.grey.shade600,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        const SizedBox(width: 15),
+                                        const SizedBox(height: 10),
                                         Container(
                                           padding: const EdgeInsets.all(10),
                                           decoration: BoxDecoration(
@@ -148,49 +216,19 @@ class CoffeePage extends StatelessWidget {
                                               end: Alignment.bottomRight,
                                             ),
                                           ),
-                                          child: Column(
-                                            children: [
-                                              Icon(
-                                                Icons.water_drop,
-                                                color: Colors.orange.shade700,
-                                              ),
-                                              Text(
-                                                'Milk',
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.grey.shade600,
-                                                ),
-                                              )
-                                            ],
+                                          child: Text(
+                                            'Medium Roasted',
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.grey.shade600,
+                                            ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                    const SizedBox(height: 10),
-                                    Container(
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        gradient: const LinearGradient(
-                                          colors: [
-                                            Color.fromRGBO(33, 38, 48, 1),
-                                            Colors.black
-                                          ],
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                        ),
-                                      ),
-                                      child: Text(
-                                        'Medium Roasted',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.grey.shade600,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -212,7 +250,7 @@ class CoffeePage extends StatelessWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                      text: coffeeModel.coffeeDescription,
+                      text: coffeeModel.coffeeName,
                       style: TextStyle(
                         color: Colors.grey.shade200,
                       )),

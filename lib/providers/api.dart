@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:coffee_ui/models/coffee_model.dart';
+import 'package:coffee_ui/models/coffee_model_2.dart';
 import 'package:coffee_ui/models/menu_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -30,9 +30,8 @@ class API {
   //   // }
   // }
 
-  static Future<List<CoffeeModel>> getCoffees() async {
+  static Future<List<MenuModel>> getCoffees() async {
     List<MenuModel> menuList = [];
-    List<CoffeeModel> coffeeList = [];
 
     const String url = 'https://www.starbucks.com/bff/ordering/menu';
     var response = await http.Client().get(
@@ -45,9 +44,9 @@ class API {
     // MenuModel menuModel =
     //     MenuModel.fromJson(json.decode(response.body)['menus'][0]);
 
-    menuList.forEach((element) {
-      print(element.name);
-    });
+    // menuList.forEach((element) {
+    //   print(element.name);
+    // });
     // dynamic body = json.decode(response.body)['menus'][0]['children'];
     // print(body);
     if (response.statusCode == 200) {
@@ -63,7 +62,7 @@ class API {
       // coffeeList.sort(
       //   (a, b) => a.coffeeName.compareTo(b.coffeeName),
       // );
-      return coffeeList;
+      return menuList;
     } else {
       print(json.decode(response.body));
       throw 'Failed to coffee data.';

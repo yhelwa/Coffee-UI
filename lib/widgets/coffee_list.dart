@@ -1,32 +1,16 @@
 import 'package:coffee_ui/bloc/coffee/coffee_bloc.dart';
 import 'package:coffee_ui/components/special.dart';
+import 'package:coffee_ui/models/coffee_model.dart';
+import 'package:coffee_ui/models/menu_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/coffee/coffee_event.dart';
 import '../bloc/coffee/coffee_state.dart';
-import '../models/coffee_model.dart';
 import '../pages/mobile/coffee_page.dart';
 import 'coffee_tile.dart';
 import 'constants.dart';
 
-class CoffeeListSpecial extends StatefulWidget {
+class CoffeeListSpecial extends StatelessWidget {
   const CoffeeListSpecial({Key? key}) : super(key: key);
-
-  @override
-  State<CoffeeListSpecial> createState() => _CoffeeListSpecialState();
-}
-
-class _CoffeeListSpecialState extends State<CoffeeListSpecial> {
-  @override
-  void initState() {
-    super.initState();
-    getCoffeeItems();
-  }
-
-  getCoffeeItems() async {
-    CoffeeBloc _coffee = BlocProvider.of<CoffeeBloc>(context);
-    _coffee.add(const FetchCoffeeItems());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +22,13 @@ class _CoffeeListSpecialState extends State<CoffeeListSpecial> {
             child: CircularProgressIndicator(),
           );
         } else {
-          List<CoffeeModel> _coffeeList = state.filteredCoffeeItems!;
+          List<CoffeeModel> _coffeeList = state
+              .filteredCoffeeItems!.first.coffeeTypes
+              .elementAt(state.indexType!)
+              .products
+              .expand((element) => element.coffees)
+              .toList();
+          // _coffeeList.forEach((element) {print(element.coffeeName)})
           return Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +88,9 @@ class _CoffeeListSpecialState extends State<CoffeeListSpecial> {
                   shrinkWrap: true,
                   itemCount: 3,
                   itemBuilder: (context, index) {
-                    return SpecialForYou(coffee: state.coffeeItems![index]);
+                    return SpecialForYou(
+                        coffee: state.coffeeItems![0].coffeeTypes[0].products
+                            .first.coffees.first);
                   }),
             ],
           );

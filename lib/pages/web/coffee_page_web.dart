@@ -7,7 +7,7 @@ import '../../bloc/coffee/coffee_event.dart';
 import '../../bloc/coffee/coffee_state.dart';
 import '../../widgets/coffee_size.dart';
 import '../../widgets/custom_icon.dart';
-import '../../models/coffee_model.dart';
+import 'package:coffee_ui/models/coffee_model.dart';
 
 class CoffeePageWeb extends StatelessWidget {
   final CoffeeModel coffeeModel;

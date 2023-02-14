@@ -4,8 +4,6 @@ class CoffeeEvent {
   const CoffeeEvent();
 }
 
-class LoadCoffee extends CoffeeEvent {}
-
 class AddCoffee extends CoffeeEvent {
   final CoffeeModel coffee;
   const AddCoffee({required this.coffee});
@@ -23,6 +21,11 @@ class FetchCoffeeItems extends CoffeeEvent {
 class FilterSearch extends CoffeeEvent {
   final String value;
   const FilterSearch(this.value);
+}
+
+class FilterType extends CoffeeEvent {
+  final int indexType;
+  const FilterType(this.indexType);
 }
 
 class Login extends CoffeeEvent {

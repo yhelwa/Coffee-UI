@@ -31,8 +31,8 @@ class CoffeeTile extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(20)),
               child: Hero(
                 tag: 'imageHero$index',
-                child: Image.asset(
-                  // Image.network(
+                // child: Image.asset(
+                child: Image.network(
                   coffeeModel.coffeeImagePath,
                   width: 200,
                   height: 200,
@@ -49,6 +49,8 @@ class CoffeeTile extends StatelessWidget {
                   Text(
                     coffeeModel.coffeeName,
                     style: const TextStyle(fontSize: 18),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 10),
                   Text(

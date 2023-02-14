@@ -1,4 +1,4 @@
-import 'package:coffee_ui/models/coffee_model.dart';
+import 'coffee_model.dart';
 
 class CartItemModel {
   CoffeeModel? coffeeModel;

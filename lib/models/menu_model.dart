@@ -2,7 +2,7 @@ import 'coffee_type_model.dart';
 
 class MenuModel {
   final String name; //Hot coffees cold coffees
-  final List<CoffeeTypeModel>? coffeeTypes;
+  final List<CoffeeTypeModel> coffeeTypes;
 
   MenuModel({
     required this.name,

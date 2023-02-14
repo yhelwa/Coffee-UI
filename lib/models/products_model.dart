@@ -1,20 +1,20 @@
-import 'product_model.dart';
+import 'coffee_model.dart';
 
 class ProductsModel {
   final String name;
-  final List<ProductModel> products;
+  final List<CoffeeModel> coffees;
 
   ProductsModel({
     required this.name,
-    required this.products,
+    required this.coffees,
   });
 
   factory ProductsModel.fromJson(Map<String, dynamic> map) {
     return ProductsModel(
       name: map['name'] as String,
-      products: map['products'] != null && (map['products'] as List).isNotEmpty
+      coffees: map['products'] != null && (map['products'] as List).isNotEmpty
           ? List.from(map['products'])
-              .map((element) => ProductModel.fromJson(element))
+              .map((element) => CoffeeModel.fromJson(element))
               .toList()
           : [],
     );
